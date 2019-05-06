@@ -109,10 +109,10 @@ export class CloudUI extends vscode.TreeItem {
 		return this.brief;
 	}
 
-	// iconPath = {
-	// 	light: path.join(__filename, '..', '..', 'resources', 'light', 'dependency.svg'),
-	// 	dark: path.join(__filename, '..', '..', 'resources', 'dark', 'dependency.svg')
-	// };
+	iconPath = {
+		light: path.join(__filename, '..', '..', 'media', 'vue-logo.svg'),
+		dark: path.join(__filename, '..', '..', 'media', 'vue-logo.svg')
+	};
 
 	contextValue = 'dependency';
 

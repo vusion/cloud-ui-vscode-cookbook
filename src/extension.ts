@@ -22,20 +22,22 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.commands.registerCommand('extension.openUIMarkDown',
 			(uiName, abspath) =>
 			vscode.commands.executeCommand('vscode.open', vscode.Uri.file(path.join(abspath, 'README.md'))));
+	}else{
+		vscode.window.showErrorMessage('当前项目下不存在cloud UI，执行npm i cloud-ui.vision安装');
 	}
 
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
+	// // The command has been defined in the package.json file
+	// // Now provide the implementation of the command with registerCommand
+	// // The commandId parameter must match the command field in package.json
+	// let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
+	// 	// The code you place here will be executed every time your command is executed
 
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
-	});
+	// 	// Display a message box to the user
+	// 	vscode.window.showInformationMessage('Hello World!');
+	// });
 
-	context.subscriptions.push(disposable);
+	// context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
