@@ -1,0 +1,51 @@
+{
+	"name": "cloud-ui-explore",
+	"displayName": "cloud-ui-explore",
+	"description": "Display cloud ui README in vscode",
+	"version": "0.0.1",
+	"publisher": "Tony Wang",
+	"icon": "logo128.png",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:cloudUIDependence"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "cloudUI-explorer",
+					"title": "Cloud UI QuickLink",
+					"icon": "media/logo.svg"
+				}
+			]
+		},
+		"views": {
+			"cloudUI-explorer": [
+				{
+					"id": "cloudUIDependence",
+					"name": "cloud UI Dependencies"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}
