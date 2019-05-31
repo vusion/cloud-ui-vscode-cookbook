@@ -4,6 +4,8 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
 import { CloudUIProvider } from './cloudUIDependance';
+import { appendFiles, isFolder } from './fsio';
+// import { CloudUIWebviewBootstrap } from './cloudUIDisplayWebview';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -20,27 +22,26 @@ export function activate(context: vscode.ExtensionContext) {
 		const Provider = new CloudUIProvider(uri.path);
 		vscode.window.registerTreeDataProvider('cloudUIDependence', Provider);
 		vscode.commands.registerCommand('extension.openUIMarkDown',
-			(uiName, abspath) =>
-			vscode.commands.executeCommand('vscode.open', vscode.Uri.file(path.join(abspath, 'README.md'))));
+			(uiName, abspath) =>{
+				vscode.commands.executeCommand('markdown.showPreview', vscode.Uri.file(path.join(abspath, 'README.md')));
+				// vscode.commands.executeCommand('clouduidoc.glance', uiName, abspath)
+			});
+		// CloudUIWebviewBootstrap(context);
+		context.subscriptions.push(
+			vscode.commands.registerCommand('clouduidoc.addFolder', async (clickedFile: vscode.Uri) => {
+				const path = clickedFile.fsPath;
+				if(isFolder(path)){
+					await appendFiles(path)
+					vscode.commands.executeCommand('workbench.files.action.refreshFilesExplorer')
+				}
+			})
+		);
 	}else{
 		vscode.window.showErrorMessage('当前项目下不存在cloud UI，执行npm i cloud-ui.vision安装');
 	}
 
-
-	// // The command has been defined in the package.json file
-	// // Now provide the implementation of the command with registerCommand
-	// // The commandId parameter must match the command field in package.json
-	// let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
-	// 	// The code you place here will be executed every time your command is executed
-
-	// 	// Display a message box to the user
-	// 	vscode.window.showInformationMessage('Hello World!');
-	// });
-
-	// context.subscriptions.push(disposable);
 }
 
-// this method is called when your extension is deactivated
 export function deactivate() {}
 
 

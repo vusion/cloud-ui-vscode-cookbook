@@ -12,10 +12,31 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onView:cloudUIDependence"
+		"onView:cloudUIDependence",
+		"onCommand:clouduidoc.glance",
+		"onCommand:clouduidoc.addFolder"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "clouduidoc.addFolder"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "clouduidoc.glance",
+				"title": "explore a cloud UI document",
+				"category": "clouduidoc"
+			},
+			{
+				"command": "clouduidoc.addFolder",
+				"title": "add Templates to Folder",
+				"category": "clouduidoc"
+			}
+		],
 		"viewsContainers": {
 			"activitybar": [
 				{
@@ -47,5 +68,11 @@
 		"tslint": "^5.12.1",
 		"@types/node": "^10.12.21",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"@vusion/md-vue-loader": "^1.0.1",
+		"highlight.js": "^9.15.6",
+		"markdown-it": "^8.4.2",
+		"markdown-it-for-inline": "^0.1.1"
 	}
 }
