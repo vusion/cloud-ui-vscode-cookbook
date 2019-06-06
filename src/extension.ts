@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { CloudUIProvider } from './cloudUIDependance';
 import { appendFiles, isFolder } from './fsio';
-// import { CloudUIWebviewBootstrap } from './cloudUIDisplayWebview';
+import { CloudUIWebviewBootstrap } from './cloudUIDisplayWebview';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -21,12 +21,15 @@ export function activate(context: vscode.ExtensionContext) {
 		const { uri } =  targetWorkspace;
 		const Provider = new CloudUIProvider(uri.path);
 		vscode.window.registerTreeDataProvider('cloudUIDependence', Provider);
+		// vscode.window.registerTreeDataProvider('cloudUIDependence2', Provider);
 		vscode.commands.registerCommand('extension.openUIMarkDown',
 			(uiName, abspath) =>{
-				vscode.commands.executeCommand('markdown.showPreview', vscode.Uri.file(path.join(abspath, 'README.md')));
-				// vscode.commands.executeCommand('clouduidoc.glance', uiName, abspath)
+				// vscode.commands.executeCommand('markdown.showPreview', vscode.Uri.file(path.join(abspath, 'README.md')));
+				vscode.commands.executeCommand('clouduidoc.glance', uiName, abspath)
 			});
-		// CloudUIWebviewBootstrap(context);
+
+
+		CloudUIWebviewBootstrap(context, uri.path);
 		context.subscriptions.push(
 			vscode.commands.registerCommand('clouduidoc.addFolder', async (clickedFile: vscode.Uri) => {
 				const path = clickedFile.fsPath;

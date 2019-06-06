@@ -73,6 +73,8 @@
 		"@vusion/md-vue-loader": "^1.0.1",
 		"highlight.js": "^9.15.6",
 		"markdown-it": "^8.4.2",
-		"markdown-it-for-inline": "^0.1.1"
+		"markdown-it-for-inline": "^0.1.1",
+		"vue": "^2.6.10",
+		"vue-server-renderer": "^2.6.10"
 	}
 }
