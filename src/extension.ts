@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 			})
 		);
 	}else{
-		vscode.window.showErrorMessage('当前项目下不存在cloud UI，执行npm i cloud-ui.vision安装');
+		vscode.window.showErrorMessage('当前项目下不存在cloud UI，执行npm i cloud-ui.vusion安装');
 	}
 
 }
